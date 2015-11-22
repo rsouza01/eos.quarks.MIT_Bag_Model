@@ -24,6 +24,11 @@
 
     History:
     Version 0.1: 2015/11/08     (rsouza) - Creating the file.
+    Version 0.2: 2015/11/22     (rsouza) - Parametrization changed to the baryon density.
+
+
+    TODO:
+        - Get command line parameters.
 
     Usage:
         mit_bag_model_eos.py
@@ -44,16 +49,15 @@ def main(argv):
     print("mit_bag_model_eos")
 
     parameters = mbm.MITBagParameters(
-        bag_constant=57, 
-        epsilon_from=200, 
-        epsilon_to=1000, 
-        total_points=100)
+        bag_constant=57,
+        n_b_from=1e-15,
+        n_b_to=4000,
+        total_points=200,
+        nuclear_units=False)
     
     mit_bag = mbm.MITBagEquations(parameters)
     mit_bag.run()
-    
-    
-    
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
