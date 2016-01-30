@@ -42,20 +42,71 @@ import sys
 import scipy.integrate as integrate
 import numpy as np
 import mit_bag_model_equations as mbm
+from datetime import datetime
+
+import sys
+import getopt
+
+def usage():
+    """
+    Shows the program usage
+    """
+    print(
+        "Usage: \n" +
+        "    mit_bag_model_eos.py\n")
+
+
+def get_cl_parameters(argv):
+    """
+    Extracts the command line parameters.
+    :param argv:
+    :return:
+    """
+    bag_constant = 0
+    n_b_from = 1e-15
+    n_b_to = 4000
+
+    try:
+        opts, args = getopt.getopt(argv, "hb:f:t:", ["help", "bag=", "r_from=", "r_to="])
+    except getopt.GetoptError as err:
+        print(err)
+        usage()
+        sys.exit(2)
+
+    for opt, arg in opts:
+
+        if opt in ("-b", "--bag"):
+            bag_constant = float(arg)
+
+        elif opt in ("-f", "--r_from"):
+            n_b_from = float(arg)
+
+        elif opt in ("-t", "--r_to"):
+            n_b_to = float(arg)
+
+        elif opt == '-h':
+            usage()
+            exit(0)
+        else:
+            assert False, "Unhandled exception."
+
+    return bag_constant, n_b_from, n_b_to
 
 
 def main(argv):
     
-    print("mit_bag_model_eos")
+    bag_constant, n_b_from, n_b_to = get_cl_parameters(argv)
+
+    print("# MIT Bag Model EoS, B = %d" % bag_constant)
 
     parameters = mbm.MITBagParameters(
-        bag_constant=57,
-        n_b_from=1e-15,
-        n_b_to=4000,
+        bag_constant=bag_constant,
+        n_b_from=n_b_from,
+        n_b_to=n_b_to,
         total_points=200,
-        nuclear_units=False)
+        nuclear_units=True)
     
-    mit_bag = mbm.MITBagEquations(parameters)
+    mit_bag = mbm.MITBagEquationsFranzon(parameters)
     mit_bag.run()
 
 
