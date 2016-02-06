@@ -65,7 +65,8 @@ class MITBagEquationsFranzon:
 
             baryonic_density = n_b
 
-            chem_potential = (epsilon + pressure) / baryonic_density
+            # chem_potential = (epsilon + pressure) / baryonic_density
+            chem_potential = float((float(epsilon) + float(pressure)) / float(baryonic_density))
 
             # Convert to erg, grams, cm, etc...
             if not self.__parameters.nuclear_units:
