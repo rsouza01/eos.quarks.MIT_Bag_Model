@@ -9,6 +9,6 @@ for mit_B in "${qcd_B[@]}"
 do
 
 	echo "Generating MIT B=${mit_B} MeV..."
-	./mit_bag_model_eos.py --r_from=1e-15 --r_to=35 --bag=${mit_B} > ../generated/mit_bag_model_B_${mit_B}.csv
+	./mit_bag_model_eos.py --r_from=1e-15 --r_to=150 --bag=${mit_B} > ../generated/mit_bag_model_B_${mit_B}.csv
 
 done
