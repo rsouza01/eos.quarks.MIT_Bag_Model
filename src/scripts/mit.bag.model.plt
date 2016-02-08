@@ -21,8 +21,8 @@ set output "../plots/mit.bag.model.eps"
 
 set key left box linestyle -1
 
-set xrange[0:2000]
-set yrange[0:1000]
+set xrange[0:1000]
+set yrange[0:200]
 
 set title 'MIT Bag Model, {/Symbol e} {/Symbol \264} P'
 set xlabel '{/Symbol e} [MeV fm^{-3}]' font "cmr10,15"
@@ -51,8 +51,8 @@ plot "../generated/mit_bag_model_B_50.csv" using 1:2 with lines lt rgb "blue" ti
 
 set key right bottom box linestyle -1
 
-set yrange[0:2000]
-set xrange[0:1000]
+set yrange[0:1000]
+set xrange[0:200]
 
 set title 'MIT Bag Model, P {/Symbol \264} {/Symbol e}'
 set ylabel '{/Symbol e} [MeV fm^{-3}]' font "cmr10,15"
@@ -81,8 +81,8 @@ plot "../generated/mit_bag_model_B_50.csv" using 2:1 with lines lt rgb "blue" ti
 
 set key left top box linestyle -1
 
-set yrange[0:1000]
-set xrange[0:50]
+set yrange[0:200]
+set xrange[0:30]
 
 set title 'MIT Bag Model, {/Symbol m} {/Symbol \264} P'
 set xlabel '{/Symbol m} [MeV]' font "cmr10,15"
