@@ -60,10 +60,11 @@ class MITBagEquationsFranzon:
 
         for n_b in n_b_bin:
 
-            epsilon = energy_factor*n_b**exponent + self.__parameters.bag_constant
-            pressure = pressure_factor * n_b**exponent - self.__parameters.bag_constant
+            baryonic_density = n_b/3
 
-            baryonic_density = n_b
+            epsilon = energy_factor*baryonic_density**exponent + self.__parameters.bag_constant
+            pressure = pressure_factor * baryonic_density**exponent - self.__parameters.bag_constant
+
 
             # chem_potential = (epsilon + pressure) / baryonic_density
             chem_potential = float((float(epsilon) + float(pressure)) / float(baryonic_density))
@@ -106,9 +107,9 @@ class MITBagEquationsHaensel:
             print("# epsilon [MeV/fm^3], pressure [MeV/fm^3], baryonic_density [1/fm^3], chem_potential[MeV]")
 
         for n_b in n_b_bin:
-            epsilon = (1./3.) * b * n_b**exponent + self.__parameters.bag_constant
-            pressure = (1./3.) * b * n_b**exponent - self.__parameters.bag_constant
             baryonic_density = n_b
+            epsilon = (1./3.) * b * baryonic_density**exponent + self.__parameters.bag_constant
+            pressure = (1./3.) * b * baryonic_density**exponent - self.__parameters.bag_constant
             chem_potential = (epsilon + pressure) / baryonic_density
 
             # Convert to erg, grams, cm, etc...
