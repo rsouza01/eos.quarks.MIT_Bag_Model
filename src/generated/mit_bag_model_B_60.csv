@@ -1,5 +1,5 @@
-% MIT Bag Model EoS B = 60
-% epsilon [MeV/fm^3], pressure [MeV/fm^3], baryonic_density [1/fm^3], chem_potential[MeV]
+# MIT Bag Model EoS B = 60
+# epsilon [MeV/fm^3], pressure [MeV/fm^3], baryonic_density [1/fm^3], chem_potential[MeV]
 3906.54465561, 1222.18155187, 150.0, 34.1915080498
 3880.79377126, 1213.59792375, 149.246231156, 34.13413964
 3855.08620225, 1205.02873408, 148.492462312, 34.0765777438
