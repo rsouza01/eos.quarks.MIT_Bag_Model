@@ -52,6 +52,7 @@ class MITBagEquationsFranzon:
         if not self.__parameters.nuclear_units:
             print("# epsilon [erg/cm^3], pressure [erg/cm^3], baryonic_density [1/cm^3], chem_potential[erg]")
             format_string = "{:08e}, {:08e}, {:08e}, {:08e}"
+
         else:
             print("# epsilon [MeV/fm^3], pressure [MeV/fm^3], baryonic_density [1/fm^3], chem_potential[MeV]")
 
@@ -79,17 +80,18 @@ class MITBagEquationsFranzon:
 
             print(format_string.format(epsilon, pressure, baryonic_density, chem_potential))
 
-
 class MITBagEquationsHaensel:
+
     """ MIT Bag equations. """
 
     def __init__(self, parameters):
-        
+
         self.__parameters = parameters
 
     def run(self):
 
         b = 952.37  # MeV fm, Haensel & Potekhin, pg 411.
+
         exponent = 4./3.
         n_b_bin = np.linspace(self.__parameters.n_b_to,
                               self.__parameters.n_b_from,
@@ -107,9 +109,12 @@ class MITBagEquationsHaensel:
             print("# epsilon [MeV/fm^3], pressure [MeV/fm^3], baryonic_density [1/fm^3], chem_potential[MeV]")
 
         for n_b in n_b_bin:
-            baryonic_density = n_b/3.
-            epsilon = (1./3.) * b * baryonic_density**exponent + self.__parameters.bag_constant
+
+            baryonic_density = n_b
+
+            epsilon = b * baryonic_density**exponent + self.__parameters.bag_constant
             pressure = (1./3.) * b * baryonic_density**exponent - self.__parameters.bag_constant
+
             chem_potential = (epsilon + pressure) / baryonic_density
 
             # Convert to erg, grams, cm, etc...
@@ -121,3 +126,5 @@ class MITBagEquationsHaensel:
                 chem_potential *= mev_to_erg
 
             print(format_string.format(epsilon, pressure, baryonic_density, chem_potential))
+
+

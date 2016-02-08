@@ -97,16 +97,16 @@ def main(argv):
     
     bag_constant, n_b_from, n_b_to = get_cl_parameters(argv)
 
-    print("# MIT Bag Model EoS, B = %d" % bag_constant)
+    print("# MIT Bag Model EoS B = %d, , ," % bag_constant)
 
     parameters = mbm.MITBagParameters(
         bag_constant=bag_constant,
         n_b_from=n_b_from,
         n_b_to=n_b_to,
-        total_points=200,
+        total_points=400,
         nuclear_units=True)
     
-    mit_bag = mbm.MITBagEquationsFranzon(parameters)
+    mit_bag = mbm.MITBagEquationsHaensel(parameters)
     mit_bag.run()
 
 
